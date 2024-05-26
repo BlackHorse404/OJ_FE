@@ -1,6 +1,11 @@
 pipeline{
     agent any
     stages {
+        stage('clone') {
+            steps {
+                git 'https://github.com/BlackHorse404/OJ_FE.git'
+            }
+        }
         stage('Install Enviroment And Dependency') {
             steps {
                 // Install any dependencies your Python test needs, like pip install <package>
