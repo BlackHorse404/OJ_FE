@@ -17,12 +17,13 @@ pipeline{
         //         // sh 'python3.8 OnlineJudge_BE/manage.py test oj'
         //     }
         // }
-        stage('Run FE') {
+        stage('Start docker compose') {
             steps {
                 // Run your Python test script
                 sh 'ls'
                 sh 'docker images'
-                sh 'ls && docker compose up'
+                sh "docker-compose build"
+                sh 'docker compose up -d'
             }
         }
     }
