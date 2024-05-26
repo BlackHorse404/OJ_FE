@@ -1,11 +1,6 @@
 pipeline{
     agent any
     stages {
-        stage('clone') {
-            steps {
-                git 'https://github.com/BlackHorse404/OJ_FE.git'
-            }
-        }
         stage('Install Enviroment And Dependency') {
             steps {
                 // Install any dependencies your Python test needs, like pip install <package>
@@ -27,7 +22,7 @@ pipeline{
                 // Run your Python test script
                 sh 'ls'
                 sh 'docker images'
-                sh 'ls && docker run -d -p 8899:5173 oj_fe'
+                sh 'ls && docker run -d -p 80:80 oj_fe'
             }
         }
     }
