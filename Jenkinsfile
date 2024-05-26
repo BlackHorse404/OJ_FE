@@ -6,9 +6,8 @@ pipeline{
                 // Install any dependencies your Python test needs, like pip install <package>
                 // sh 'pip3 --version'
                 // sh 'pip3 install -r OnlineJudge_BE/deploy/requirements.txt'
-                sh 'cd OnlineJudge_FE'
                 sh 'ls'
-                sh 'pwd && cd OnlineJudge_FE && docker build . -t oj_fe'
+                sh 'pwd && docker build . -t oj_fe'
             }
         }
         // stage('Run Tests') {
@@ -21,7 +20,6 @@ pipeline{
         stage('Run FE') {
             steps {
                 // Run your Python test script
-                sh 'cd OnlineJudge_FE'
                 sh 'ls'
                 sh 'docker images'
                 sh 'ls && docker run -d -p 8899:5173 oj_fe'
