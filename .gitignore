@@ -1,0 +1,6 @@
+./OnlineJudge_FE/.git
+./OnlineJudge_BE/.git
+./OnlineJudge_FE/.vscode
+./OnlineJudge_BE/.vscode
+**/dist
+**/node_modules
