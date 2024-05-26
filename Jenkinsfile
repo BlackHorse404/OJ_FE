@@ -3,14 +3,18 @@ pipeline{
     stages {
         stage('stop all docker container & image') {
             steps {
-                sh 'docker ps -aq'
-                sh 'docker stop $(docker ps -aq)'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    sh 'docker ps -aq'
+                    sh 'docker stop $(docker ps -aq)'
+                }
             }
         }
         stage('clean docker container & image') {
             steps {
-                sh 'docker rm $(docker ps -aq)'
-                sh 'docker rmi $(docker images -q)'
+                catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE'){
+                    sh 'docker rm $(docker ps -aq)'
+                    sh 'docker rmi $(docker images -q)'
+                }
             }
         }
         stage('Install Dependencies and build image oj_fe') {
