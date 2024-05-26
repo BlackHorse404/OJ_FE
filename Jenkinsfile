@@ -27,7 +27,6 @@ pipeline{
                 // Run your Python test script
                 sh 'ls'
                 sh 'docker images'
-                sh "docker-compose build"
                 sh 'docker compose up -d'
             }
         }
