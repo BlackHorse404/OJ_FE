@@ -1,7 +1,19 @@
 pipeline{
     agent any
     stages {
-        stage('Install Enviroment And Dependency') {
+        stage('stop all docker container & image') {
+            steps {
+                sh 'docker ps -aq'
+                sh 'docker stop $(docker ps -aq)'
+            }
+        }
+        stage('clean docker container & image') {
+            steps {
+                sh 'docker rm $(docker ps -aq)'
+                sh 'docker rmi $(docker images -q)'
+            }
+        }
+        stage('Install Dependencies and build image oj_fe') {
             steps {
                 // Install any dependencies your Python test needs, like pip install <package>
                 // sh 'pip3 --version'
@@ -10,13 +22,6 @@ pipeline{
                 sh 'pwd && docker build . -t oj_fe'
             }
         }
-        // stage('Run Tests') {
-        //     steps {
-        //         // Run your Python test script
-        //         // sh 'cd '
-        //         // sh 'python3.8 OnlineJudge_BE/manage.py test oj'
-        //     }
-        // }
         stage('Start docker compose') {
             steps {
                 // Run your Python test script
@@ -30,11 +35,11 @@ pipeline{
     post {
         success {
             // Actions to take if the test succeeds
-            echo 'Tests passed successfully!'
+            echo 'Run successfully!'
         }
         failure {
             // Actions to take if the test fails
-            echo 'Tests failed!'
+            echo 'Run failed!'
         }
     }
 }
