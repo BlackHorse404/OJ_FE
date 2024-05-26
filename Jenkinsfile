@@ -22,7 +22,7 @@ pipeline{
                 // Run your Python test script
                 sh 'ls'
                 sh 'docker images'
-                sh 'ls && docker run -d -p 80:80 oj_fe'
+                sh 'ls && docker compose up'
             }
         }
     }
