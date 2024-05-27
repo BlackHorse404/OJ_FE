@@ -29,6 +29,7 @@ pipeline{
         stage('Start docker compose') {
             steps {
                 // Run your Python test script
+                sh 'ls'
                 sh 'docker images'
                 sh 'docker compose up -d'
             }
