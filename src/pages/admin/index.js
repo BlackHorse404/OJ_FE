@@ -49,7 +49,7 @@ Vue.prototype.$success = (msg) => {
   if (!msg) {
     Vue.prototype.$message({'message': 'Succeeded', 'type': 'success'})
   } else {
-    Vue.prototype.$message({'message': msg, 'type': 'success'})
+    Vue.prototype.$message({'message': msg, 'type': 'fail'})
   }
 }
 
